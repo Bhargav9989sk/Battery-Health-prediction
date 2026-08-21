@@ -11,7 +11,7 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-model = joblib.load("Battery_Health_prediction_model.pkl")
+model = joblib.load("Battery_model.pkl")
 encoder = joblib.load("label_encoder.pkl")
 st.title("Battery Health Prediction")
 
