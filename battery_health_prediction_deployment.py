@@ -13,29 +13,31 @@ import joblib
 
 model = joblib.load("Battery_model.pkl")
 encoder = joblib.load("label_encoder.pkl")
+
 st.title("Battery Health Prediction")
 
-Battery_Type= st.selectbox("Battery_Type",encoder["Battery_Type"].classes_)
-Poor_Cell_Design=  st.number_input("Poor_Cell_Design",min_value=0.0, max_value=1.0, step=1)
-External_Abuse= st.selectbox("External_Abuse",encoder["External_Abuse"].classes_)
-Poor_Battery_Design	=  st.number_input("Poor_Battery_Design",min_value=0.0, max_value=1.0, step=1)
-Short_Circuits	=  st.number_input("Short_Circuits",min_value=0.0, max_value=1.0, step=1)
-Temperature	=  st.number_input("Temperature")
-Overcharge_Overdischarge	= st.selectbox("Overcharge_Overdischarge",encoder["Overcharge_Overdischarge"].classes_)
-Battery_Maintenance	= st.selectbox("Battery_Maintenance",encoder["Battery_Maintenance"].classes_)
+Battery_Type = st.selectbox("Battery_Type", encoder["Battery_Type"].classes_)
+Poor_Cell_Design = st.number_input("Poor_Cell_Design", min_value=0.0, max_value=1.0, step=1.0)
+External_Abuse = st.selectbox("External_Abuse", encoder["External_Abuse"].classes_)
+Poor_Battery_Design = st.number_input("Poor_Battery_Design", min_value=0.0, max_value=1.0, step=1.0)
+Short_Circuits = st.number_input("Short_Circuits", min_value=0.0, max_value=1.0, step=1.0)
+Temperature = st.number_input("Temperature")
+Overcharge_Overdischarge = st.selectbox("Overcharge_Overdischarge", encoder["Overcharge_Overdischarge"].classes_)
+Battery_Maintenance = st.selectbox("Battery_Maintenance", encoder["Battery_Maintenance"].classes_)
 
-df = pd.dataframe({
-    "Battery_Type":[Battery_Type],
-    "Poor_Cell_Design":[Poor_Cell_Design],
-    "External_Abuse":[External_Abuse],
-    "Poor_Battery_Design":[Poor_Battery_Design],
-    "Short_Circuits":[Short_Circuits],
-    "Temperature":[Temperature],
-    "Overcharge_Overdischarge":[Overcharge_Overdischarge],
-    "Battery_Maintenance":[Battery_Maintenance],
+df = pd.DataFrame({
+    "Battery_Type": [Battery_Type],
+    "Poor_Cell_Design": [Poor_Cell_Design],
+    "External_Abuse": [External_Abuse],
+    "Poor_Battery_Design": [Poor_Battery_Design],
+    "Short_Circuits": [Short_Circuits],
+    "Temperature": [Temperature],
+    "Overcharge_Overdischarge": [Overcharge_Overdischarge],
+    "Battery_Maintenance": [Battery_Maintenance]
 })
 
 if st.button("Predict Battery Health"):
+
     prediction = model.predict(df)[0]
 
     if prediction == 0:
