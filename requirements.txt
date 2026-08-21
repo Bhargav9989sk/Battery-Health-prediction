@@ -1,5 +1,5 @@
 streamlit
-Python==3.12.13 
-NumPy==2.0.2
-Scikit-learn==1.6.1
-Joblib==1.5.3
+Python
+NumPy
+Scikit-learn
+Joblib
